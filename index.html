@@ -1,12 +1,119 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Abraham Martínez - AppExchange Certified Apps</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Abraham Martínez - ISV Developer | AppExchange</title>
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9fafb;
+      color: #333;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background-color: #0070d2; /* color Salesforce blue */
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+      box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
+    }
+    header h1 {
+      font-size: 2.4rem;
+      margin-bottom: 0.3rem;
+    }
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.85;
+    }
+    main {
+      flex: 1;
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    section {
+      margin-bottom: 3rem;
+    }
+    h2 {
+      color: #0070d2;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #0070d2;
+      display: inline-block;
+      padding-bottom: 0.3rem;
+    }
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+    a.button {
+      display: inline-block;
+      background-color: #0070d2;
+      color: white;
+      padding: 0.8rem 1.6rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+    a.button:hover {
+      background-color: #005bb5;
+    }
+    footer {
+      background-color: #eee;
+      text-align: center;
+      padding: 1rem 0;
+      font-size: 0.9rem;
+      color: #555;
+      margin-top: auto;
+    }
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.8rem;
+      }
+      main {
+        margin: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Welcome, I'm Abraham Martínez</h1>
-  <p>I develop certified solutions as an Independent Software Vendor (ISV) on Salesforce AppExchange.</p>
-  <a href="https://appexchange.salesforce.com/">View our apps</a>
+  <header>
+    <h1>Abraham Martínez</h1>
+    <p>ISV Developer | Certified Salesforce AppExchange Partner</p>
+  </header>
+  <main>
+    <section>
+      <h2>About Me</h2>
+      <p>Welcome! I'm Abraham, an Independent Software Vendor (ISV) developer specialized in building certified, scalable, and innovative applications for the Salesforce AppExchange.</p>
+      <p>My mission is to help businesses maximize their Salesforce investments with solutions tailored to their unique needs.</p>
+    </section>
+
+    <section>
+      <h2>My AppExchange Apps</h2>
+      <p>Discover the powerful apps I have developed that help companies automate, analyze, and grow.</p>
+      <a href="https://appexchange.salesforce.com/" class="button" target="_blank" rel="noopener noreferrer">View Our Apps</a>
+    </section>
+
+    <section>
+      <h2>Contact Me</h2>
+      <p>Interested in learning more or scheduling a demo? Reach out anytime.</p>
+      <p>Email: <a href="mailto:abraham@example.com">abraham@example.com</a></p>
+      <p>LinkedIn: <a href="https://linkedin.com/in/abrahammartinez" target="_blank" rel="noopener noreferrer">linkedin.com/in/abrahammartinez</a></p>
+    </section>
+  </main>
+  <footer>
+    &copy; 2025 Abraham Martínez. All rights reserved.
+  </footer>
 </body>
 </html>
+
