@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
     <!-- Tailwind CSS CDN for modern, utility-first styling -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tone.js CDN for web audio capabilities -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"></script>
     <style>
         /* Custom scrollbar for the main content area */
         /* This is kept as custom CSS as Tailwind doesn't directly support scrollbar styling */
@@ -153,6 +155,34 @@
     </main>
 
     <script>
+        // Initialize Tone.js components
+        let synth;
+        // Define a short, professional-sounding musical sequence (C major arpeggio)
+        const notes = ['C4', 'E4', 'G4', 'C5', 'G4', 'E4'];
+        let currentNoteIndex = 0;
+
+        // Function to initialize audio context and synth
+        // This is called on the first user interaction to comply with browser autoplay policies
+        async function initAudio() {
+            if (!synth) {
+                // Tone.start() resumes the audio context
+                await Tone.start();
+                // Initialize a simple synthesizer and connect it to the master output
+                synth = new Tone.Synth({
+                    oscillator: {
+                        type: 'sine' // A clean sine wave for a professional sound
+                    },
+                    envelope: {
+                        attack: 0.005,
+                        decay: 0.1,
+                        sustain: 0.05,
+                        release: 0.2
+                    }
+                }).toDestination();
+                console.log("Audio context started and synth initialized.");
+            }
+        }
+
         // Function to create and animate the sparkle effect
         function createSparkle(event) {
             const sparkle = document.createElement('div');
@@ -178,6 +208,16 @@
             // Remove the sparkle element after its animation completes
             sparkle.addEventListener('animationend', () => {
                 sparkle.remove();
+            });
+
+            // Play a musical note
+            initAudio().then(() => { // Ensure audio is initialized before playing
+                if (synth) {
+                    // Play the current note for a short duration (e.g., an eighth note)
+                    synth.triggerAttackRelease(notes[currentNoteIndex], '8n');
+                    // Move to the next note in the sequence, looping back to the beginning if at the end
+                    currentNoteIndex = (currentNoteIndex + 1) % notes.length;
+                }
             });
         }
 
