@@ -1,151 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Abraham Martínez | Salesforce & LWC Expert</title>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abraham Marte | Salesforce & LWC Expert</title>
+    <!-- Google Fonts: Inter for general text (lighter weights), JetBrains Mono for a techy touch in titles -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    <!-- Tailwind CSS CDN for modern, utility-first styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom scrollbar for the main content area */
+        /* This is kept as custom CSS as Tailwind doesn't directly support scrollbar styling */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: rgba(74, 115, 232, 0.67); /* A slightly transparent blue */
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2); /* Darker track for contrast */
+        }
 
-<style>  
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-  }
-
-  html, body {
-    height: 100%;
-    font-family: 'Inter', sans-serif;
-    background: url('https://images.unsplash.com/photo-1517433456452-f9633a875f6f?auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
-
-    background-size: cover;
-    color: #fff;
-    overflow: hidden; /* Quitar scroll */
-  }
-
-  body {
-    font-family: 'JetBrains Mono', monospace;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-  }
-
-  main {
-    background: rgba(0 0 0 / 0.65);
-    border-radius: 16px;
-    padding: 2rem 3rem;
-    max-width: 900px;
-    width: 100%;
-    max-height: 90vh;
-    overflow-y: auto; /* Scroll interno sólo si es necesario */
-    box-shadow: 0 8px 32px rgba(0,0,0,0.8);
-  }
-
-  header {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  header h1 {
-    font-size: 3rem;
-    font-weight: 700;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.7);
-    margin-bottom: 0.2rem;
-  }
-
-  header p {
-    font-size: 1.3rem;
-    font-weight: 500;
-    text-shadow: 0 1px 6px rgba(0,0,0,0.5);
-  }
-
-  section {
-    margin-bottom: 2.5rem;
-  }
-
-  h2 {
-    color: #81a9ff;
-    margin-bottom: 1rem;
-    font-size: 2rem;
-    border-bottom: 3px solid #4a73e8;
-    display: inline-block;
-    padding-bottom: 0.25rem;
-  }
-
-  p {
-    font-size: 1.15rem;
-    line-height: 1.5;
-    color: #cfd7ffcc;
-  }
-
-  a.button {
-    display: inline-block;
-    margin-top: 1rem;
-    background: linear-gradient(90deg, #4a73e8 0%, #003ea6 100%);
-    padding: 0.8rem 2rem;
-    border-radius: 30px;
-    color: #fff;
-    font-weight: 700;
-    text-decoration: none;
-    box-shadow: 0 6px 12px rgb(74 115 232 / 0.6);
-    transition: all 0.25s ease-in-out;
-  }
-
-  a.button:hover {
-    background: linear-gradient(90deg, #003ea6 0%, #4a73e8 100%);
-    box-shadow: 0 8px 20px rgb(74 115 232 / 0.9);
-    transform: scale(1.05);
-  }
-
-  /* Scroll interno si necesario */
-  main::-webkit-scrollbar {
-    width: 8px;
-  }
-  main::-webkit-scrollbar-thumb {
-    background-color: #4a73e8aa;
-    border-radius: 4px;
-  }
-
-  /* Responsive */
-  @media (max-width: 600px) {
-    header h1 {
-      font-size: 2rem;
-    }
-    h2 {
-      font-size: 1.5rem;
-    }
-    main {
-      padding: 1.5rem 1.5rem;
-    }
-  }
-</style>
+        /* Custom gradient for buttons, refined for a more subtle, Apple-like feel */
+        .btn-gradient {
+            background: linear-gradient(90deg, #5a85f2 0%, #2a5cd6 100%); /* Softer blue gradient */
+        }
+        .btn-gradient:hover {
+            background: linear-gradient(90deg, #2a5cd6 0%, #5a85f2 100%);
+        }
+    </style>
+    <script>
+        // Tailwind CSS configuration to extend default theme (e.g., add custom fonts)
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                        jetbrains: ['JetBrains Mono', 'monospace'],
+                    },
+                    // Custom colors can be added here if needed
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-  <main>
-    <header>
-      <h1>Abraham Martínez</h1>
-      <p>Salesforce ISV & LWC Expert | Certified AppExchange Developer</p>
-    </header>
+<body class="h-screen font-inter text-white flex items-center justify-center p-4 overflow-hidden
+             bg-cover bg-center bg-no-repeat"
+      style="background-image: url('https://images.unsplash.com/photo-1510519138101-570d1dca3d66?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+    <!-- Main content container -->
+    <main class="bg-black bg-opacity-65 rounded-2xl p-8 md:p-12 max-w-3xl w-full
+                 max-h-[90vh] overflow-y-auto shadow-2xl custom-scrollbar">
 
-    <section>
-      <h2>About Me</h2>
-      <p>Hi! I'm Abraham, a passionate Software developer specializing in certified Salesforce applications and Lightning Web Components (LWC).</p>
-      <p>I build scalable and innovative apps to help businesses unlock the full power of the Salesforce ecosystem.</p>
-    </section>
+        <!-- Header Section -->
+        <header class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-jetbrains font-bold mb-1
+                       drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)]">
+                Abraham Marte
+            </h1>
+            <p class="text-base md:text-lg font-inter font-light
+                      drop-shadow-[0_1px_6px_rgba(0,0,0,0.5)]">
+                Salesforce ISV & LWC Expert | Certified AppExchange Developer
+            </p>
+        </header>
 
-    <section>
-      <h2>My AppExchange Apps</h2>
-      <p>Explore my certified applications that drive automation, analytics, and growth for Salesforce customers worldwide.</p>
-      <a href="https://appexchange.salesforce.com/" class="button" target="_blank" rel="noopener noreferrer">View My Apps</a>
-    </section>
+        <!-- About Me Section -->
+        <section class="mb-10">
+            <h2 class="text-xl md:text-2xl text-blue-300 mb-4 font-bold
+                       border-b-4 border-blue-600 inline-block pb-1">
+                About Me
+            </h2>
+            <p class="text-sm leading-relaxed text-blue-100/80 mb-4">
+                Hi! I'm Abraham, a passionate Software Developer specializing in certified Salesforce applications and Lightning Web Components (LWC).
+            </p>
+            <p class="text-sm leading-relaxed text-blue-100/80">
+                I build scalable and innovative apps to help businesses unlock the full power of the Salesforce ecosystem.
+            </p>
+        </section>
 
-    <section>
-      <h2>Contact Me</h2>
-      <p>Want to learn more or schedule a demo? Reach out anytime!</p>
-      <p>Email: <a href="mailto:marte.mtzmtz@outlook.com" style="color:#81a9ff;">marte.mtzmtz@outlook.com</a></p>
-      <p>LinkedIn: <a href="https://www.linkedin.com/in/abrahammmm/" target="_blank" rel="noopener noreferrer" style="color:#81a9ff;">www.linkedin.com/in/abrahammmm</a></p>
-    </section>
-  </main>
+        <!-- My AppExchange Apps Section -->
+        <section class="mb-10">
+            <h2 class="text-xl md:text-2xl text-blue-300 mb-4 font-bold
+                       border-b-4 border-blue-600 inline-block pb-1">
+                My AppExchange Apps
+            </h2>
+            <p class="text-sm leading-relaxed text-blue-100/80">
+                Explore my certified applications that drive automation, analytics, and growth for Salesforce customers worldwide.
+            </p>
+            <!-- Button with custom gradient and hover effects -->
+            <a href="https://appexchange.salesforce.com/" class="inline-block mt-4
+                       py-2 px-6 rounded-full text-white font-medium text-base
+                       shadow-md shadow-blue-500/40 transition-all duration-250 ease-in-out
+                       transform hover:scale-105 btn-gradient"
+               target="_blank" rel="noopener noreferrer">
+                View My Apps
+            </a>
+        </section>
+
+        <!-- Contact Me Section -->
+        <section>
+            <h2 class="text-xl md:text-2xl text-blue-300 mb-4 font-bold
+                       border-b-4 border-blue-600 inline-block pb-1">
+                Contact Me
+            </h2>
+            <p class="text-sm leading-relaxed text-blue-100/80 mb-2">
+                Want to learn more or schedule a demo?
+            </p>
+            <p class="text-sm leading-relaxed text-blue-100/80">
+                Email:
+                <a href="mailto:marte.mtzmtz@outlook.com" class="text-blue-300 hover:text-blue-200 underline">
+                    marte.mtzmtz@outlook.com
+                </a>
+            </p>
+            <p class="text-sm leading-relaxed text-blue-100/80">
+                LinkedIn:
+                <a href="https://www.linkedin.com/in/abrahammmm/" target="_blank" rel="noopener noreferrer"
+                   class="text-blue-300 hover:text-blue-200 underline">
+                    www.linkedin.com/in/abrahammmm
+                </a>
+            </p>
+        </section>
+    </main>
 </body>
 </html>
