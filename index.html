@@ -26,7 +26,9 @@
             border-radius: 4px;
         }
         .custom-scrollbar::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.2); /* Darker track for contrast */
+            /* Made track always visible with a subtle dark background */
+            background-color: rgba(30, 30, 30, 0.5); /* Darker track for contrast, always visible */
+            border-radius: 4px;
         }
 
         /* Custom gradient for buttons, refined for a more subtle, Apple-like feel */
@@ -82,13 +84,13 @@
         }
     </script>
 </head>
-<body class="h-screen font-inter text-white flex items-start justify-center p-4
+<body class="h-screen font-inter text-white flex items-start justify-center py-4
              bg-cover bg-center bg-no-repeat"
       style="background-image: url('https://images.unsplash.com/photo-1510519138101-570d1dca3d66?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
 
     <!-- Main content container -->
     <main class="bg-black bg-opacity-65 rounded-2xl pt-4 pb-8 px-8 md:px-12 max-w-3xl w-full
-                 max-h-[90vh] overflow-y-auto shadow-2xl custom-scrollbar">
+                 h-full overflow-y-auto shadow-2xl custom-scrollbar mx-auto"> <!-- Changed max-h-[90vh] to h-full and added mx-auto -->
 
         <!-- Header Section -->
         <header class="text-center mb-8">
