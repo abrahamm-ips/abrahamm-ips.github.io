@@ -29,6 +29,36 @@
         .btn-gradient:hover {
             background: linear-gradient(90deg, #2a5cd6 0%, #5a85f2 100%);
         }
+
+        /* CSS for the subtle sparkle effect */
+        .sparkle-effect {
+            position: absolute;
+            width: 40px; /* Initial size of the sparkle, made larger */
+            height: 40px;
+            border-radius: 50%; /* Makes it a circle */
+            /* Radial gradient for a soft blue glow effect */
+            background: radial-gradient(circle, rgba(135, 206, 250, 0.9) 0%, rgba(70, 130, 180, 0.7) 30%, rgba(255, 255, 255, 0) 70%);
+            pointer-events: none; /* Ensures clicks pass through the sparkle */
+            transform: translate(-50%, -50%); /* Centers the sparkle on the click point */
+            animation: sparkle-fade-out 0.8s ease-out forwards; /* Longer animation duration */
+            z-index: 9999; /* Ensures the sparkle is on top of other elements */
+        }
+
+        /* Keyframes for the sparkle animation: scales up and fades out more visibly */
+        @keyframes sparkle-fade-out {
+            0% {
+                transform: translate(-50%, -50%) scale(0); /* Starts small */
+                opacity: 1; /* Starts fully opaque */
+            }
+            60% {
+                transform: translate(-50%, -50%) scale(2); /* Expands more */
+                opacity: 0.7; /* Fades slightly */
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(3); /* Continues expanding further */
+                opacity: 0; /* Fully fades out */
+            }
+        }
     </style>
     <script>
         // Tailwind CSS configuration to extend default theme (e.g., add custom fonts)
@@ -121,5 +151,40 @@
             </p>
         </section>
     </main>
+
+    <script>
+        // Function to create and animate the sparkle effect
+        function createSparkle(event) {
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('sparkle-effect');
+
+            let x, y;
+            // Get coordinates based on event type (mouse or touch)
+            if (event.type === 'touchstart') {
+                x = event.touches[0].clientX;
+                y = event.touches[0].clientY;
+            } else {
+                x = event.clientX;
+                y = event.clientY;
+            }
+
+            // Set the position of the sparkle
+            sparkle.style.left = `${x}px`;
+            sparkle.style.top = `${y}px`;
+
+            // Append the sparkle to the body
+            document.body.appendChild(sparkle);
+
+            // Remove the sparkle element after its animation completes
+            sparkle.addEventListener('animationend', () => {
+                sparkle.remove();
+            });
+        }
+
+        // Add event listeners for mouse clicks and touch events
+        document.addEventListener('mousedown', createSparkle);
+        // Use { passive: true } for touch events for better scrolling performance
+        document.addEventListener('touchstart', createSparkle, { passive: true });
+    </script>
 </body>
 </html>
