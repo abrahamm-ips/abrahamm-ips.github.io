@@ -161,30 +161,22 @@
         const notes = ['C4', 'E4', 'G4', 'C5', 'G4', 'E4'];
         let currentNoteIndex = 0;
 
-        // Function to initialize audio context and synth
-        // This is called on the first user interaction to comply with browser autoplay policies
-        async function initAudio() {
-            if (!synth) {
-                // Tone.start() resumes the audio context
-                await Tone.start();
-                // Initialize a simple synthesizer and connect it to the master output
-                synth = new Tone.Synth({
-                    oscillator: {
-                        type: 'sine' // A clean sine wave for a professional sound
-                    },
-                    envelope: {
-                        attack: 0.005,
-                        decay: 0.1,
-                        sustain: 0.05,
-                        release: 0.2
-                    }
-                }).toDestination();
-                console.log("Audio context started and synth initialized.");
+        // Initialize synth once, but don't start audio context yet.
+        // Tone.js will handle context creation, but it will be suspended initially.
+        synth = new Tone.Synth({
+            oscillator: {
+                type: 'sine' // A clean sine wave for a professional sound
+            },
+            envelope: {
+                attack: 0.005,
+                decay: 0.1,
+                sustain: 0.05,
+                release: 0.2
             }
-        }
+        }).toDestination();
 
-        // Function to create and animate the sparkle effect
-        function createSparkle(event) {
+        // Function to create and animate the sparkle effect and play sound
+        async function createSparkle(event) {
             const sparkle = document.createElement('div');
             sparkle.classList.add('sparkle-effect');
 
@@ -210,15 +202,19 @@
                 sparkle.remove();
             });
 
+            // Ensure audio context is started/resumed on user interaction
+            // This is crucial for mobile browsers like iOS Safari
+            if (Tone.context.state !== 'running') {
+                await Tone.start();
+            }
+
             // Play a musical note
-            initAudio().then(() => { // Ensure audio is initialized before playing
-                if (synth) {
-                    // Play the current note for a short duration (e.g., an eighth note)
-                    synth.triggerAttackRelease(notes[currentNoteIndex], '8n');
-                    // Move to the next note in the sequence, looping back to the beginning if at the end
-                    currentNoteIndex = (currentNoteIndex + 1) % notes.length;
-                }
-            });
+            if (synth) {
+                // Play the current note for a short duration (e.g., an eighth note)
+                synth.triggerAttackRelease(notes[currentNoteIndex], '8n');
+                // Move to the next note in the sequence, looping back to the beginning if at the end
+                currentNoteIndex = (currentNoteIndex + 1) % notes.length;
+            }
         }
 
         // Add event listeners for mouse clicks and touch events
